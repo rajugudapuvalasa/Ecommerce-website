@@ -1,0 +1,96 @@
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f1f1f1;
+}
+
+.form-box {
+  background: #fff;
+  padding: 30px;
+  width: 340px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.form-box h2 {
+  margin-bottom: 20px;
+}
+
+.form-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.form-box button {
+  width: 100%;
+  padding: 12px;
+  background: #4d5863;
+  border: none;
+  color: white;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form-box button:hover {
+  background: #1565c0;
+}
+
+.google-btn {
+  background: white;
+  color: black;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.google-btn:hover {
+  background: #f9fafb;
+}
+
+/* --- Google Icon --- */
+.google-icon {
+  font-size: 24px;
+}
+
+/* --- Bottom Text --- */
+.small-text {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.small-text a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.small-text a:hover {
+  text-decoration: underline;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+}

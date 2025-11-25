@@ -1,0 +1,116 @@
+/* =======================
+   FOOTER MAIN CONTAINER
+======================= */
+.footer {
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  padding: 50px 0;
+}
+
+.footer-container {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* =======================
+   FOOTER SECTIONS
+======================= */
+.footer-section {
+  width: 22%;
+  min-width: 230px;
+  margin-bottom: 25px;
+}
+
+.footer-section h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #ff9800;
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  border-left: 3px solid #ff9800;
+  padding-left: 8px;
+}
+
+/* =======================
+   TEXT & LIST STYLE
+======================= */
+.footer-section p {
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.footer-section ul li {
+  margin: 10px 0;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-section ul li:hover {
+  color: #ff9800;
+  padding-left: 5px;
+}
+
+/* =======================
+   SOCIAL ICONS
+======================= */
+.footer-socials svg {
+  font-size: 24px;
+  margin-right: 12px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.footer-socials svg:hover {
+  color: #ff9800;
+  transform: scale(1.1);
+}
+
+/* =======================
+   BOTTOM COPYRIGHT
+======================= */
+.footer-bottom {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 30px;
+  font-size: 14px;
+  border-top: 1px solid var(--header-text);
+}
+
+/* =======================
+   RESPONSIVE DESIGN
+======================= */
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-section {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .footer-section ul li {
+    text-align: center;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,122 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease;
+}
+
+/* Body takes full height */
+body, html {
+  height: 100%;
+}
+
+::-webkit-scrollbar{
+  display:none;
+}
+
+
+
+/* ---------- LIGHT MODE ---------- */
+:root[data-theme='light'] {
+  --header-bg: #ffffff;
+  --header-text: #1a1a1a;
+
+  --body-bg: #f7f7f7;
+  --body-text: #222222;
+
+  --link-text: #1a1a1a;
+
+  --footer-bg: #ffffff;
+  --footer-text: #111827;
+
+  --accent-color: orangeRed;
+  --border-color: #e5e7eb;
+
+  --dot-color: #333;
+  --dot-active-color: #000;
+}
+
+/* ---------- DARK MODE ---------- */
+:root[data-theme='dark']{
+  --header-bg: #010102;
+  --header-text: #fff;
+
+  --body-bg: #0f172a;
+  --body-text: #fff;
+
+  --link-text: #fff;
+
+  --footer-bg: #010102;
+  --footer-text: #fff;
+
+  --accent-color: orangered;
+  --border-color: #334155;
+
+  --dot-color: #bbb;
+  --dot-active-color: #fff;
+}
+
+/* ---------- GLOBAL STYLES ---------- */
+body {
+  background: var(--body-bg);
+  color: var(--body-text);
+  margin: 0;
+  font-family: Arial, sans-serif;
+  
+
+}
+
+/* HEADER */
+header {
+  grid-area: header;
+  width: 100%;
+  background: var(--header-bg);
+  color: var(--header-text);
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* LINKS */
+.nav-links a{
+  color: var(--link-text);
+}
+
+/* Humburger */
+.hamburger span{
+    background-color: var(--header-text);
+  }
+  
+
+/* SIDEBAR */
+aside{
+  grid-area: sidebar;
+  background: var(--body-bg);
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+}
+
+/* MAIN CONTENT */
+main {
+  grid-area: main;
+  padding: 20px;
+  background: var(--body-bg);
+  color: var(--body-text);
+}
+/* FOOTER */
+footer {
+  grid-area: footer;
+  width: 100%;
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* Accent (buttons, links, highlights) */
+.accent {
+  color: var(--accent-color);
+}

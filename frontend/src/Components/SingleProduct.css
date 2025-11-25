@@ -1,0 +1,72 @@
+.single-product-container {
+  max-width: 100%;
+  margin: 10px auto;
+}
+
+.single-product-card {
+  height: 400px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  
+}
+  
+
+.image-slider {
+  width: 300px;
+  height: 300px;
+  border-radius: 12px;
+}
+.single-product-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+
+.single-product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.single-product-info h2 {
+  margin-bottom: 10px;
+  font-size: 28px;
+  color: var(--body-text);
+}
+
+.single-product-info p {
+  font-size: 16px;
+  color: var(--body-text);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.single-product-info h3 {
+  color: rgb(158, 226, 57);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Dots — Light & Dark mode via CSS variables */
+.slick-dots li button:before{
+  font-size: 10px;
+  color: var(--dot-color) !important;
+  opacity: 0.7;
+}
+
+.slick-dots li.slick-active button:before {
+  color: var(--dot-active-color) !important;
+  opacity: 1 !important;
+}
+
+/* Increase clickable area */
+.slick-dots li button {
+  width: 15px;
+  height: 15px;
+}
+.slick-arrow{
+  display: none !important;
+}
