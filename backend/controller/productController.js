@@ -6,58 +6,56 @@ import cloudinary from "../config/cloudinary.js";
 // ------------------------------------------------------
 export const createProduct = async (req, res) => {
   try {
-    const { name, description, price, category, brand, stock } = req.body;
-
-    if (!name || !description || !price || !category || !stock) {
-      return res.status(400).json({ message: "Please fill all required fields" });
-    }
-
-    if (!req.files || req.files.length === 0) {
-      return res.status(400).json({ message: "At least one image is required" });
-    }
-
-    // Upload images to Cloudinary
-    let images = [];
-
-    for (let file of req.files) {
-      const result = await cloudinary.uploader.upload(file.path, {
-        folder: "Shopmall/product_images",
-      });
-
-      images.push({ url: result.secure_url });
-    }
-
-    const product = new Product({
+    const {
       name,
       description,
-      price,
-      category,
       brand,
+      category,
+      subCategory,
+      price,
       stock,
-      images,
-    });
+    } = req.body;
 
-    const savedProduct = await product.save();
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ message: "Images required" });
+    }
+
+    const images = req.files.map((file) => ({
+      url: file.path,
+      public_id: file.filename,
+    }));
+
+    const product = await Product.create({
+      name,
+      description,
+      brand,
+      category,
+      subCategory,
+      price,
+      stock,
+      images, // ✅ saved to DB
+    });
 
     res.status(201).json({
-      message: "Product created successfully",
-      product: savedProduct,
+      success: true,
+      product,
     });
-
-  } catch (err) {
+  } catch (error) {
+    console.log(error);
     res.status(500).json({
-      message: "Error creating product",
-      error: err.message,
+      message: "Create product failed",
+      error: error.message,
     });
   }
 };
+
 
 // ------------------------------------------------------
 // GET ALL PRODUCTS
 // ------------------------------------------------------
 export const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find().sort({ createdAt: -1 });
 
     res.status(200).json({
       message: "Products fetched successfully",
@@ -65,9 +63,42 @@ export const getAllProducts = async (req, res) => {
     });
 
   } catch (err) {
-    res.status(500).json({ message: "Error fetching products", error: err.message });
+    res.status(500).json({ success: false, message: "Error fetching products", error: err.message });
   }
 };
+
+/* ================= CATEGORY / SUBCATEGORY ================= */
+import mongoose from "mongoose";
+
+export const getProductsByCategory = async (req, res) => {
+  try {
+    const { category, subcategory } = req.params;
+
+    const filter = {
+      category: new mongoose.Types.ObjectId(category),
+    };
+
+    if (subcategory) {
+      filter.subCategory = subcategory;
+    }
+
+    const products = await Product.find(filter)
+      .populate("category", "category")
+      .sort({ createdAt: -1 });
+
+    res.json({
+      success: true,
+      count: products.length,
+      products,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
 
 // ------------------------------------------------------
 // GET SINGLE PRODUCT

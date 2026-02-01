@@ -1,0 +1,97 @@
+.admin-form {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-form h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.image-upload-box {
+  margin-top: 10px;
+}
+
+.upload-btn {
+  background: #2874f0;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  width: fit-content;
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.preview-item {
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.preview-item img {
+  width: 100%;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.remove-img {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  color: var(--header-text);
+  border: none;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  cursor: pointer;
+}
+.admin-form .actions{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-form .actions button {
+  color: var(--header-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 30px;
+}
+.admin-form .actions button[type = "create-btn"] {
+  background: rgb(16, 219, 16);
+}
+.admin-form .actions button[type = "cancel-btn"]{
+  background: rgb(252, 49, 49);
+}
+
+
+.admin-form button:hover {
+  background: var(--header-text);
+  color: var(--header-bg);
+}

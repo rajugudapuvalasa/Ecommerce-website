@@ -6,7 +6,7 @@ import cloudinary from "../config/cloudinary.js";
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "Shopmall/product_images",
+    folder: "Shopmall",
     allowed_formats: ["jpg", "jpeg", "png", "webp"],
     resource_type: "image",
   },

@@ -1,0 +1,20 @@
+.linker {
+  display: flex;
+  gap: 30px;
+  position: fixed;
+  top: 70px;
+}
+
+.linker a {
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  background: var(--header-bg);
+  color: var(--header-text);
+  font-weight: 500;
+}
+
+.linker a.active {
+  background:var(--accent-color);
+  color: var(--header-bg);
+}

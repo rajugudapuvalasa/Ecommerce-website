@@ -2,10 +2,8 @@
    FOOTER MAIN CONTAINER
 ======================= */
 .footer {
-  position: relative;
-  bottom: 0px;
   width: 100%;
-  padding: 50px 0;
+  padding: 10px;
 }
 
 .footer-container {
@@ -20,21 +18,23 @@
    FOOTER SECTIONS
 ======================= */
 .footer-section {
+  display: flex;
+  flex-direction: column;
   width: 22%;
   min-width: 230px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .footer-section h3 {
   font-size: 22px;
   margin-bottom: 15px;
-  color: #ff9800;
+  color:  var(--accent-color);
 }
 
 .footer-section h4 {
   font-size: 18px;
   margin-bottom: 12px;
-  border-left: 3px solid #ff9800;
+  border-left: 3px solid var(--accent-color);
   padding-left: 8px;
 }
 
@@ -98,10 +98,10 @@
 @media (max-width: 900px) {
   .footer-container {
     flex-direction: column;
-    text-align: center;
   }
 
   .footer-section {
+    align-items: center;
     width: 100%;
     margin-bottom: 30px;
   }

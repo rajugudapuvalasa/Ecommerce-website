@@ -1,0 +1,147 @@
+.single-product-container {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* ================= LEFT SIDE ================= */
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+.image-slider {
+  width: 600px;
+}
+
+.single-product-image {
+  width: 100%;
+  height: 420px;
+  border-radius: 10px;
+}
+
+/* THUMBNAILS */
+.thumb-dot {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+.slick-dots.slick-thumb {
+  display: flex !important;
+  gap: 50px;
+  justify-content: center;
+}
+
+.thumb-img {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* ================= ACTION BUTTONS ================= */
+.action-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.add-to-cart {
+  flex: 1;
+  padding: 12px;
+  background: #ff9f00;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.buy {
+  flex: 1;
+  padding: 12px;
+  background: #fb641b;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-to-cart:hover {
+  background: #f08c00;
+}
+
+.buy:hover {
+  background: #e85b10;
+}
+
+/* ================= RIGHT SIDE ================= */
+.single-product-info {
+  flex: 1;
+  background: var(--body--bg);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.single-product-info h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.single-product-info p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.single-product-info h3 {
+  margin-top: 15px;
+  font-size: 26px;
+  color: gold;
+}
+
+.single-product-info h4 {
+  margin-top: 10px;
+  color: green;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .single-product-container {
+    flex-direction: column;
+  }
+  .image-slider {
+  width: 100%;
+  }
+  .single-product-image {
+    height: 300px;
+  }
+
+  .thumb-dot {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px) {
+  .single-product-image {
+    height: 250px;
+  }
+
+  .single-product-info h2 {
+    font-size: 20px;
+  }
+
+  .single-product-info h3 {
+    font-size: 22px;
+  }
+
+  .add-to-cart,
+  .buy {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,106 @@
+.category-section{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas: "aside category-products";
+}
+
+.category-products {
+  grid-area: category-products;
+  width: 100%;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 16px;
+}
+
+/* PRODUCT CARD */
+.category-product-card {
+  background-color: var(--header-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+.category-product-card .content{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+}
+.category-product-card:hover {
+  transform: translateY(-4px);
+}
+
+/* IMAGE */
+.category-product-card img {
+  width: 100%;
+  height: 150px;
+}
+
+.category-product-card h4 {
+    color: rgb(25, 158, 247);
+  font-size: 15px;
+  margin: 0;
+}
+
+.category-product-card p {
+    color: gold;
+  font-size: 14px;
+}
+
+/* PRICE */
+.product-price {
+  font-weight: bold;
+  margin-top: auto;
+}
+
+/* ===============================
+   TABLET (>= 600px)
+=================================*/
+@media (min-width: 600px) {
+  .category-products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .product-card img {
+    height: 200px;
+  }
+}
+
+/* ===============================
+   LAPTOP (>= 900px)
+=================================*/
+@media (min-width: 900px) {
+  .category-products {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .product-card img {
+    height: 220px;
+  }
+}
+
+/* ===============================
+   DESKTOP (>= 1200px)
+=================================*/
+@media (min-width: 1200px) {
+  .category-products {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .product-card img {
+    height: 240px;
+  }
+}
+
+/* ===============================
+   LARGE DESKTOP (>= 1600px)
+=================================*/
+@media (min-width: 1600px) {
+  .category-products {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

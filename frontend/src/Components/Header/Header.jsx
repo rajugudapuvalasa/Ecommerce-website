@@ -1,152 +1,125 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaShoppingCart, FaRegHeart, FaUserCircle } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaSun, FaMoon } from "react-icons/fa";
 import "./Header.css";
+import { useAdmin } from "../../admin/role";
+import { toast } from "react-hot-toast";
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const isAdmin = useAdmin();
+  
   const [profileOpen, setProfileOpen] = useState(false);
-
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   const profileRef = useRef(null);
-  const navRef = useRef(null);
 
-  // Close dropdown when clicking outside
+  /* ================= OUTSIDE CLICK ================= */
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setProfileOpen(false);
       }
-
-      if (navRef.current && !navRef.current.contains(event.target)) {
-        setMenuOpen(false);
-      }
     };
 
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Toggle theme
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-  };
-
-  // Initialize theme on mount
+  /* ================= THEME ================= */
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
-  // Update token on custom event
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  /* ================= TOKEN SYNC ================= */
   useEffect(() => {
-    const updateToken = () => {
+    const updateAuth = () => {
       setToken(localStorage.getItem("token"));
     };
-
-    window.addEventListener("tokenChanged", updateToken);
-    return () => window.removeEventListener("tokenChanged", updateToken);
+    window.addEventListener("tokenChanged", updateAuth);
+    return () => window.removeEventListener("tokenChanged", updateAuth);
   }, []);
 
+  /* ================= LOGOUT ================= */
+  const logout = () => {
+    if (window.confirm("Are you sure you want to logout?")) {
+      localStorage.clear();
+      toast.success("Logout successful");
+      window.dispatchEvent(new Event("tokenChanged"));
+      navigate("/login");
+    }
+  };
+
   return (
-    <header className="header" ref={navRef} >
-      {/* Logo */}
-      <div className="logo">
-        <h2>
-          Shop<span>_Mall</span>
-        </h2>
+    <header className="header">
+      {/* LEFT */}
+      <div className="header-left">
+        <Link to="/" className="main-logo">
+          <h1>Shop_Mall</h1>
+        </Link>
       </div>
 
-      {/* Search Bar */}
-      <div className="search">
+      {/* RIGHT */}
+      <div className="header-right">
+        {/* SEARCH */}
         <div className="search-bar">
-          <input type="text" placeholder="Search ...." />
+          <input type="text" placeholder="Search..." />
+          <IoSearchOutline className="search-icon" />
         </div>
-        <IoSearchOutline className="search-icon" />
-      </div>
 
-      {/* Navigation Links */}
-      <nav
-        className={`nav-links ${menuOpen ? "open" : ""}`}
-        onClick={(e) => e.stopPropagation()}
-        >
-        <NavLink to="/" className="nav-link">Home</NavLink>
-        <NavLink to="/product" className="nav-link">Products</NavLink>
-        <NavLink to="/fashion" className="nav-link">Fashion</NavLink>
-        <NavLink to="/contact" className="nav-link">Contact</NavLink>
+        {/* ICONS */}
+        {token && (
+          <div className="icons">
+            <Link to="/wishlist">
+              <FaRegHeart className="icon" />
+            </Link>
 
-        {!token && (
-          <>
-            <NavLink to="/login" className="nav-link">Login</NavLink>
-            <NavLink to="/signup" className="nav-link">Signup</NavLink>
-          </>
-        )}
+            <Link to="/cart">
+              <FaShoppingCart className="icon" />
+            </Link>
 
-        <NavLink to="/dashboard" className="nav-link">Dashboard</NavLink>
-      </nav>
+            {/* PROFILE */}
+            <div className="profile-container" ref={profileRef}>
+              <FaUserCircle
+                className="icon"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setProfileOpen((prev) => !prev);
+                }}
+              />
 
+              {profileOpen && (
+                <div className="profile-dropdown">
+                  <p>👤 My Profile</p>
 
-      {/* Icons Section */}
-      {token && (
-        <div className="icons">
-          <FaShoppingCart className="icon" title="Cart" />
+                  {/* SECURE ADMIN CHECK */}
+                  {isAdmin && (
+                    <Link to="/dashboard" onClick={() => setProfileOpen(false)}>
+                      📊 Dashboard
+                    </Link>
+                  )}
 
-          {/* Profile Dropdown */}
-          <div className="profile-container" ref={profileRef}>
-            <FaUserCircle
-              className="icon"
-              title="Profile"
-              onClick={(e) => {
-                e.stopPropagation();
-                setProfileOpen(!profileOpen);
-              }}
-            />
+                  <p onClick={toggleTheme} style={{ cursor: "pointer" }}>
+                    {theme === "light" ? <FaMoon /> : <FaSun />} Change Theme
+                  </p>
 
-            {profileOpen && (
-              <div className="profile-dropdown">
-                <p>👤 My Profile</p>
-                <p>⚙️ Settings</p>
-
-                <p onClick={toggleTheme} style={{ cursor: "pointer" }}>
-                  {theme === "light" ? <FaMoon /> : <FaSun />} Change Theme
-                </p>
-
-                <p
-                  onClick={() => {
-                    const confirmLogout = window.confirm(
-                      "Are you sure you want to logout?"
-                    );
-                    if (confirmLogout) {
-                      localStorage.removeItem("token");
-                      window.dispatchEvent(new Event("tokenChanged"));
-                    }
-                  }}
-                >
-                  🚪 Logout
-                </p>
-              </div>
-            )}
+                  <p className="logout" onClick={logout}>
+                    🚪 Logout
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      )}
-
-      {/* Hamburger for mobile */}
-      <div
-        className="hamburger"
-        onClick={(e) => {
-          e.stopPropagation();
-          setMenuOpen(!menuOpen);
-        }}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
+        )}
       </div>
     </header>
   );

@@ -11,12 +11,17 @@
 /* Body takes full height */
 body, html {
   height: 100%;
+  background: var(--body-bg);
+  color: var(--body-text);
 }
 
 ::-webkit-scrollbar{
   display:none;
 }
-
+.links a,a{
+  text-decoration: none;
+  color: var(--header-text);
+}
 
 
 /* ---------- LIGHT MODE ---------- */
@@ -59,61 +64,17 @@ body, html {
   --dot-active-color: #fff;
 }
 
-/* ---------- GLOBAL STYLES ---------- */
-body {
-  background: var(--body-bg);
-  color: var(--body-text);
-  margin: 0;
-  font-family: Arial, sans-serif;
-  
-
-}
-
 /* HEADER */
 header {
-  grid-area: header;
-  width: 100%;
   background: var(--header-bg);
   color: var(--header-text);
-  padding: 15px 20px;
-  border-bottom: 1px solid var(--border-color);
 }
 
-/* LINKS */
-.nav-links a{
-  color: var(--link-text);
-}
 
-/* Humburger */
-.hamburger span{
-    background-color: var(--header-text);
-  }
-  
-
-/* SIDEBAR */
-aside{
-  grid-area: sidebar;
-  background: var(--body-bg);
-  border-right: 1px solid var(--border-color);
-  padding: 20px;
-}
-
-/* MAIN CONTENT */
-main {
-  grid-area: main;
-  padding: 20px;
-  background: var(--body-bg);
-  color: var(--body-text);
-}
 /* FOOTER */
 footer {
-  grid-area: footer;
-  width: 100%;
   background: var(--footer-bg);
   color: var(--footer-text);
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
 }
 
 /* Accent (buttons, links, highlights) */
