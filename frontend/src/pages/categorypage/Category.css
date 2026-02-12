@@ -1,0 +1,23 @@
+.category-layout{
+  height: calc(100vh - 85px);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  grid-template-areas: "sidebar-filter category-products";
+}
+.sidebar-filter{
+  grid-area: sidebar-filter;
+}
+.category-products{
+  grid-area: category-products;
+}
+@media(max-width : 480px)
+{
+  .category-layout{
+    grid-template-columns: 1fr;
+    grid-template-areas: "category-products";
+  }
+  .sidebar-filter{
+    display: none;
+  }
+}

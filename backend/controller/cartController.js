@@ -1,14 +1,9 @@
 import Cart from "../models/cartModel.js";
-import Product from "../models/productModel.js"
-/* ================= ADD TO CART ================= */
+
 export const addToCart = async (req, res) => {
   try {
     const userId = req.user.id;
-    console.log("hii")
     const { productId, quantity, price } = req.body;
-    console.log(productId);
-    console.log(quantity);
-    console.log(price);
     if (!productId || !price)
       return res.status(400).json({ message: "Missing data" });
 

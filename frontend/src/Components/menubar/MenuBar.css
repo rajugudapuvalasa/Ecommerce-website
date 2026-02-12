@@ -44,7 +44,7 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 2px;
   z-index: 1000;
   animation: fadeIn .2s ease-in-out;
 }
@@ -55,7 +55,7 @@
   padding: 8px 10px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .sub-item:hover{
@@ -69,12 +69,24 @@
   to{ opacity:1; transform: translateY(0); }
 }
 
-@media (max-width: 600px){
+@media (max-width <= 768px){
+  .menu-item{
+    font-size: 16px;
+  }
+  .menu-dropdown{
+    min-width: 180px;
+    padding: 6px;
+  }
+  .sub-item{
+    font-size: 10px;
+  }
+}
+@media (max-width: 480px){
   .menu-bar{
-    height: 30px;
+    height: 20px;
   }
   .menu-item{
-    padding: 6px 8px;
+    padding: 2px 4px;
     font-size: 13px;
   }
   .menu-dropdown{
@@ -85,3 +97,4 @@
     font-size: 12px;
   }
 }
+

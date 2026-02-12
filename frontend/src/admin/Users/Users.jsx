@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Users.css";
-import { FaEdit, FaTrash, FaCheck, FaTimes } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import API_URL from "../../Api";
 import { toast } from "react-hot-toast";
 
@@ -167,27 +167,27 @@ const Users = () => {
 
                 <td>
                   {!isEditing ? (
-                    <button onClick={() => handleEdit(user._id)}>
-                      <FaEdit /> Edit
+                    <button onClick={() => handleEdit(user._id)} className="edit-btn">
+                      <FaEdit />
                     </button>
                   ) : (
                     <>
                       {isChanged && (
-                        <button onClick={() => updateUserRole(user._id)}>
-                          <FaCheck /> Update
+                        <button onClick={() => updateUserRole(user._id)} className="update-btn">
+                           Update
                         </button>
                       )}
                       <button
-                        onClick={() => cancelEdit(user._id, user.role)}
+                        onClick={() => cancelEdit(user._id, user.role)} className="cancel-btn"
                       >
-                        <FaTimes /> Cancel
+                         Cancel
                       </button>
                     </>
                   )}
                 </td>
 
                 <td>
-                  <button onClick={() => deleteUser(user._id)}>
+                  <button onClick={() => deleteUser(user._id)} className="delete-btn">
                     <FaTrash />
                   </button>
                 </td>

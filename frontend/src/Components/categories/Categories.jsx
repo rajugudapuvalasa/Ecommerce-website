@@ -1,5 +1,5 @@
 import React from 'react'
-import "./All.css"
+import "./all.css"
 
 const Categories = () => {
   return (

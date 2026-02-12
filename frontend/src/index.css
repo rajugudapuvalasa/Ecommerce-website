@@ -37,7 +37,7 @@ body, html {
   --footer-bg: #ffffff;
   --footer-text: #111827;
 
-  --accent-color: orangeRed;
+  --accent-color: rgb(255, 177, 8);
   --border-color: #e5e7eb;
 
   --dot-color: #333;
@@ -57,7 +57,7 @@ body, html {
   --footer-bg: #010102;
   --footer-text: #fff;
 
-  --accent-color: orangered;
+  --accent-color:  rgb(255, 177, 8);
   --border-color: #334155;
 
   --dot-color: #bbb;

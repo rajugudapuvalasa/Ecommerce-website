@@ -7,7 +7,7 @@ import Loader from "../../Components/Loader/Loader";
 import NotFound from "../../Components/Loader/NotFound";
 import Reviews from "../../Components/reviews/Reviews";
 import Product from "../../Components/Product/Product";
-import CategoryProducts from "../../Components/categories/CategoryProducts";
+import toast from "react-hot-toast";
 const SingleProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -51,18 +51,23 @@ const SingleProduct = () => {
   }, [id]);
 
   const addToCart = async (product) => {
-  await fetch(`${API_URL}/api/cart/add`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`
-    },
-    body: JSON.stringify({
-      productId: product._id,
-      quantity: 1,
-      price: product.price
-    })
-  });
+    try{
+      await fetch(`${API_URL}/cart/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+          productId: product._id,
+          quantity: 1,
+          price: product.price
+        })
+      });
+      toast.success("Added Cart Item")
+    }catch(err){
+      console.log(err);
+    }
 };
 
 

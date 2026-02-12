@@ -21,7 +21,8 @@ import Dashboard from "./admin/Dashboard/Dashboard";
 import Category from "./admin/category/Category";
 import AllBanners from "./admin/Banners/AllBanners";
 import CreateBanner from "./admin/Banners/CreateBanner";
-import CategoryProducts from "./Components/categories/CategoryProducts"
+import CategoryPage from "./pages/categorypage/CategoryPage";
+import SearchResults from "./pages/SearchResults";
 
 const App = () => {
 
@@ -33,44 +34,39 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-
-          {/* Protected Routes */}
-          
+          <Route path="/search" element={<SearchResults />} />
           {/* CATEGORY */}
-          <Route path="/products/category/:categoryId" element={<CategoryProducts />} />
+          <Route path="/products/category/:categoryId" element={<CategoryPage />} />
 
           {/* SUBCATEGORY */}
-          <Route
-            path="/products/category/:categoryId/:subcategory"
-            element={<CategoryProducts />}
-          />
+          <Route path="/products/category/:categoryId/:subcategory" element={<CategoryPage />}/>
 
           {/* SINGLE PRODUCT */}
           <Route path="/product/:id" element={ <SingleProduct />} />
-
           <Route path="/cart" element={<Cart />} />
           <Route path="/wishlist" element={<Wishlist />} />
         </Route>
-            <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
-              <Route path="orders" element={<Orders />} />
 
-              <Route path="products" element={<Products />}>
-                <Route path="all" element={<Allproducts />} />
-                <Route path="create" element={<CreateProduct />} />                
-              </Route>
+        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
+          <Route path="orders" element={<Orders />} />
 
-              <Route path="users" element={<Users />} />
-
-              <Route path="banners" element={<Banners />}>
-                <Route path="all" element={<AllBanners />} />
-                <Route path="create" element={<CreateBanner />} />
-              </Route>
-
-              <Route path="categories" element={<Category />} >
-                <Route path="all" element={<Allcategories />} />
-                <Route path="create" element={<CreateCategory />} />
-              </Route>
+          <Route path="products" element={<Products />}>
+            <Route path="all" element={<Allproducts />} />
+            <Route path="create" element={<CreateProduct />} />                
           </Route>
+
+          <Route path="users" element={<Users />} />
+
+          <Route path="banners" element={<Banners />}>
+            <Route path="all" element={<AllBanners />} />
+            <Route path="create" element={<CreateBanner />} />
+          </Route>
+
+          <Route path="categories" element={<Category />} >
+              <Route path="all" element={<Allcategories />} />
+              <Route path="create" element={<CreateCategory />} />
+          </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

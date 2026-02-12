@@ -16,6 +16,7 @@ const Header = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   const profileRef = useRef(null);
+  const [query, setQuery] = useState("");
 
   /* ================= OUTSIDE CLICK ================= */
   useEffect(() => {
@@ -49,6 +50,15 @@ const Header = () => {
     return () => window.removeEventListener("tokenChanged", updateAuth);
   }, []);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!query.trim()) return;
+
+    navigate(`/search?q=${encodeURIComponent(query)}`);
+
+    setQuery("");
+  };
+
   /* ================= LOGOUT ================= */
   const logout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
@@ -71,10 +81,22 @@ const Header = () => {
       {/* RIGHT */}
       <div className="header-right">
         {/* SEARCH */}
-        <div className="search-bar">
-          <input type="text" placeholder="Search..." />
-          <IoSearchOutline className="search-icon" />
-        </div>
+        <form className="search-bar" onSubmit={handleSearch}>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <IoSearchOutline type="submit" className="search-icon" />
+        </form>
+ 
+        {!token && (
+            <>
+            <Link to="/login"><h4>Login</h4> </Link>
+            <Link to="/signup"><h4>Signup</h4> </Link>
+            </>
+        )}
 
         {/* ICONS */}
         {token && (

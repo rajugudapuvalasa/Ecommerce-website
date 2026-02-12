@@ -1,4 +1,5 @@
 header {
+  padding: 0px 20px;
   display: flex;
   align-items: center;
   position: sticky;
@@ -34,6 +35,7 @@ header {
   color: var(--header-text);
   font-size: 15px;
 }
+
 .search-icon {
   position: absolute;
   right: 12px;
@@ -92,12 +94,55 @@ header {
 }
 
 /* MOBILE 500px */
-@media (max-width: 500px) {
+@media (max-width: 780px) {
   header{
     padding: 0 10px;
   }
+  .header-right{
+    gap: 20px;
+  }
 
-  .main-logo h2 {
-    font-size: 20px;
+  .main-logo h1 {
+    font-size: 25px;
+  }
+  .search-bar{
+    width: 200px;
+  }
+  
+  .search-icon{
+    font-size: 16px;
+  }
+  .icons{
+    gap:20px;
+  }
+}
+/* MOBILE 500px */
+@media (max-width: 480px) {
+  header{
+    padding: 0 5px;
+  }
+  .header-right{
+    gap: 10px;
+  }
+
+  .main-logo h1 {
+    font-size: 23px;
+  }
+  .search-bar{
+    width: 150px;
+  }
+  .search-bar input{
+    padding: 8px;
+    font-size: 10px;
+  }
+  
+  .search-icon{
+    font-size: 16px;
+  }
+  .icons{
+    gap:15px;
+  }
+  .icon{
+  font-size: 25px;
   }
 }

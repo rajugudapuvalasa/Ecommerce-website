@@ -1,7 +1,6 @@
 /* Main container */
 .users-container {
   padding: 20px;
-  background: #f7f7f7;
   min-height: 100vh;
 }
 
@@ -9,7 +8,7 @@
 .users-title {
   text-align: center;
   font-size: 26px;
-  color: #333;
+  color: var(--accent-color);
   margin-bottom: 20px;
   font-weight: 600;
 }
@@ -17,32 +16,25 @@
 /* Table */
 .users-table {
   width: 100%;
-  border-collapse: collapse;
-  background: white;
+  background: var(--header-bg);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
 .users-table th {
-  background: #4a57ff;
-  color: white;
+  background: var(--accent-color);
+  color: var(--header-text);
   padding: 14px;
   text-align: left;
   font-size: 15px;
 }
 
 .users-table td {
+  border:1px solid var(--border-color);
   padding: 12px;
-  border-bottom: 1px solid #eee;
   font-size: 14px;
-  color: #444;
+  color: var(--header-text);
 }
-
-.users-table tr:hover {
-  background: #f1f4ff;
-}
-
 /* Dropdown */
 .role-dropdown {
   padding: 6px;
@@ -50,7 +42,6 @@
   border: 1px solid #ccc;
   outline: none;
   font-size: 14px;
-  background: #fff;
 }
 
 /* Action buttons */
@@ -92,7 +83,7 @@
 }
 
 .row-editing {
-  background-color: #f0f8ff;
+  background-color: var(--body-bg);
 }
 
 .edit-btn {
@@ -112,6 +103,7 @@
   margin-right: 6px;
   border-radius: 4px;
   cursor: pointer;
+  margin-bottom: 8px;
 }
 
 .cancel-btn {

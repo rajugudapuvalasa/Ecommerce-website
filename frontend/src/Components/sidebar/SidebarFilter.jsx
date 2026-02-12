@@ -1,6 +1,5 @@
 import React from "react";
-import "./SidebarFilter.css";
-
+import "./SidebarFilter.css"
 const SidebarFilter = ({
   categories,
   selectedCategory,
@@ -18,14 +17,12 @@ const SidebarFilter = ({
 }) => {
   return (
     <div className="sidebar-filter">
-
       <h3>Filters</h3>
-
       {/* CATEGORY */}
       <div className="filter-section">
         <h4>Category</h4>
         <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-          <option value="">All</option>
+          <option value="">select</option>
           {categories.map(c => (
             <option key={c._id} value={c._id}>{c.category}</option>
           ))}
@@ -78,7 +75,6 @@ const SidebarFilter = ({
           <option value="high">Price: High → Low</option>
         </select>
       </div>
-
     </div>
   );
 };

@@ -3,6 +3,7 @@
   gap: 30px;
   position: fixed;
   top: 70px;
+  z-index: 0;
 }
 
 .linker a {
@@ -11,7 +12,6 @@
   text-decoration: none;
   background: var(--header-bg);
   color: var(--header-text);
-  font-weight: 500;
 }
 
 .linker a.active {

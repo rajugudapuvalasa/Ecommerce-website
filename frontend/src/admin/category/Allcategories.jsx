@@ -122,7 +122,7 @@ const AllCategories = () => {
                 <button className="update-btn" onClick={updateCategory}>
                   Update
                 </button>
-                <button onClick={() => setEditId(null)}>Cancel</button>
+                <button onClick={() => setEditId(null)} className="cnl-btn">Cancel</button>
               </div>
             </>
           ) : (

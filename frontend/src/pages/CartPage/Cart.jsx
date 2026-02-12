@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Cart.css";
+import {toast} from "react-hot-toast"
 
 const Cart = () => {
   const [cart, setCart] = useState(null);
@@ -32,7 +33,7 @@ const Cart = () => {
       },
       body: JSON.stringify({ productId, quantity: qty }),
     });
-
+    toast.success("Quantity updated")
     fetchCart();
   };
 
@@ -44,7 +45,7 @@ const Cart = () => {
         Authorization: `Bearer ${token}`,
       },
     });
-
+    toast.error("Remove Cart Item")
     fetchCart();
   };
 

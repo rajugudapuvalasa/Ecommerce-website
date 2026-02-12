@@ -1,9 +1,7 @@
 import Product from "../models/productModel.js";
 import cloudinary from "../config/cloudinary.js";
+import mongoose from "mongoose";
 
-// ------------------------------------------------------
-// CREATE PRODUCT
-// ------------------------------------------------------
 export const createProduct = async (req, res) => {
   try {
     const {
@@ -49,10 +47,6 @@ export const createProduct = async (req, res) => {
   }
 };
 
-
-// ------------------------------------------------------
-// GET ALL PRODUCTS
-// ------------------------------------------------------
 export const getAllProducts = async (req, res) => {
   try {
     const products = await Product.find().sort({ createdAt: -1 });
@@ -66,9 +60,6 @@ export const getAllProducts = async (req, res) => {
     res.status(500).json({ success: false, message: "Error fetching products", error: err.message });
   }
 };
-
-/* ================= CATEGORY / SUBCATEGORY ================= */
-import mongoose from "mongoose";
 
 export const getProductsByCategory = async (req, res) => {
   try {
@@ -100,9 +91,6 @@ export const getProductsByCategory = async (req, res) => {
 };
 
 
-// ------------------------------------------------------
-// GET SINGLE PRODUCT
-// ------------------------------------------------------
 export const getSingleProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -120,9 +108,6 @@ export const getSingleProduct = async (req, res) => {
   }
 };
 
-// ------------------------------------------------------
-// UPDATE PRODUCT
-// ------------------------------------------------------
 export const updateProduct = async (req, res) => {
   try {
     let product = await Product.findById(req.params.id);
@@ -170,9 +155,6 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-// ------------------------------------------------------
-// DELETE PRODUCT
-// ------------------------------------------------------
 export const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -192,5 +174,26 @@ export const deleteProduct = async (req, res) => {
 
   } catch (err) {
     res.status(500).json({ message: "Error deleting product", error: err.message });
+  }
+};
+export const searchProducts = async (req, res) => {
+  try {
+    const { q } = req.query;
+
+    if (!q) {
+      return res.json({ products: [] });
+    }
+
+    const products = await Product.find({
+      $or: [
+        { name: { $regex: q, $options: "i" } },
+        { brand: { $regex: q, $options: "i" } },
+        { subCategory: { $regex: q, $options: "i" } }
+      ]
+    }).limit(50);
+
+    res.json({ success: true, products });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
   }
 };

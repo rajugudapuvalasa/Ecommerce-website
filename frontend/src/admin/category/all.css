@@ -4,13 +4,13 @@
 .category-list{
     margin-top: 20px;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
 }
 
 .category-section {
-  background: #fff;
+  display: grid;
+  background: var(--header-bg);
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 15px;
@@ -21,6 +21,10 @@
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background-color: var(--body-bg);
+  color: var(--header--text);
 }
 
 .edit-sub {
@@ -31,24 +35,27 @@
 
 .edit-sub button {
   background: #0d6efd;
+  height: 30px;
+  width: 50px;
   color: white;
   border: none;
-  padding: 6px 12px;
   border-radius: 4px;
 }
 
-ul {
-  padding-left: 20px;
+.category-section ul {
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding:5px;
 }
 
-ul li {
+.category-section ul li {
   display: flex;
   justify-content: space-between;
   margin-bottom: 6px;
 }
 
-ul li button {
-  color: white;
+.category-section ul li button {
+  color: red;
   border: none;
   border-radius: 50%;
   width: 22px;
@@ -56,20 +63,24 @@ ul li button {
   cursor: pointer;
 }
 
-.actions {
+.category-section .actions {
+  height: 30px;
   display: flex;
   gap: 10px;
   margin-top: 10px;
 }
 
-.actions button {
-  padding: 6px 12px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-}
-
 .update-btn {
+  width: 70px;
+  height: 100%;
+  border-radius: 5px;
   background: green;
   color: white;
+}
+.cnl-btn{
+  background-color: rgba(187, 174, 174, 0.418);
+  color: white;
+  width: 70px;
+  height: 100%;
+  border-radius: 5px;
 }
