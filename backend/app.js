@@ -12,10 +12,15 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin:[
+    "http://localhost:5173",          
+    "https://easyby-website.vercel.app" 
+  ],
   credentials: true
 }));
+
 
 app.use('/api/products',Product);
 app.use('/api/users',User);
