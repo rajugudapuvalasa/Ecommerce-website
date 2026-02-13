@@ -6,7 +6,7 @@ import API_URL from "../../Api";
 import Loader from "../../Components/Loader/Loader";
 import NotFound from "../../Components/Loader/NotFound";
 import Reviews from "../../Components/reviews/Reviews";
-import Product from "../../Components/Product/Product";
+import Product from '../../Components/Product/Product'
 import toast from "react-hot-toast";
 const SingleProduct = () => {
   const { id } = useParams();

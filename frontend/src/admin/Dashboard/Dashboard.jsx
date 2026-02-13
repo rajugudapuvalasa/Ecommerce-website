@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import "./dashboard.css";
+import Header from "../../Components/Header/Header";
 import Sidebar from "../sidebar/Sidebar";
-import Header from "../../Components/header/Header";
-import Footer from "../../Components/footer/Footer";
+import Footer from "../../Components/Footer/Footer";
 
 const AdminDashboard = () => {
   return (

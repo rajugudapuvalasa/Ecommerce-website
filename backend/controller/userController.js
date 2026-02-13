@@ -74,7 +74,7 @@ export const login = async (req, res) => {
 export const googleAuth = async (req, res) => {
   try {
     const { token } = req.body; // Google ID token
-    console.log(token)
+    
     // 🔐 Verify token with Google
     const decoded = await admin.auth().verifyIdToken(token);
 

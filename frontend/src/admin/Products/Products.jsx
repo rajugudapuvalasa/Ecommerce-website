@@ -1,7 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Linker from '../linker/Linker'
-import './products.css'
+import './Products.css'
 
 const Products = () => {
   return (

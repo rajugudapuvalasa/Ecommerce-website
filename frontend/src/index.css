@@ -81,3 +81,24 @@ footer {
 .accent {
   color: var(--accent-color);
 }
+
+
+/*home.css*/
+
+.homepage-layout{
+    width: 100vw;
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+@media(max-width : 480px)
+{
+    .homepage-layout{
+        margin-top: 5px;
+        padding: 3px;
+    }
+    .homepage-layout h2{
+        font-size: 14px;
+    }
+}
