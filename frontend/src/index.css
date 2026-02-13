@@ -87,7 +87,7 @@ footer {
 
 .homepage-layout{
     width: 100vw;
-    padding: 10px 30px;
+    padding: 10px 40px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -95,8 +95,7 @@ footer {
 @media(max-width : 480px)
 {
     .homepage-layout{
-        margin-top: 5px;
-        padding: 3px;
+        padding: 10px;
     }
     .homepage-layout h2{
         font-size: 14px;

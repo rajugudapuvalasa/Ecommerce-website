@@ -1,10 +1,10 @@
 /* TITLE */
 .product-page h2{
   color: var(--header-color);
-  margin: 5px 0px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 .product-structure {
-  padding: 5px 0px;
   display: flex;
   overflow-x: auto;
   gap: 10px;
@@ -49,7 +49,7 @@
 .product-structure .content{
   display: flex;
   flex-direction: column;  
-  padding: 0px 5px;
+  padding:  5px;
   gap: 5px;
 }
 /* PRODUCT NAME */
@@ -60,7 +60,7 @@
 /* PRODUCT PRICE */
 .product-price {
   font-size: 17px;
-  color:goldenrod;
+  color:green;
 }
 
 

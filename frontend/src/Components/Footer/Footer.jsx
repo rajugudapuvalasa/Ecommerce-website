@@ -9,7 +9,7 @@ const Footer = () => {
 
         {/* About Section */}
         <div className="footer-section">
-          <h3>Shop_Mall</h3>
+          <h3>EasyBy</h3>
           <p>
             Your trusted online store for electronics, fashion, and more.
             Quality products at the best prices.

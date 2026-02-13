@@ -1,22 +1,20 @@
 .category h2{
-    margin: 5px 0px;
+    margin: 10px 0px;
 }
 
 .categories-box{
     width: 100%;
     display: grid;
-    grid-template-rows:repeat(2, 150px);
+    grid-template-rows:repeat(2, 200px);
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
         "electronics books furniture"
         "fashion appliances appliances";
-    gap: 20px;
-    padding: 0px 10px;
+    gap: 25px;
 }
 .electronics{
     grid-area: electronics;
     width: 100%;
-    background-color: lightgreen;
     border-radius: 10px;
     border: 1px solid gray;
     box-shadow: 1px 2px 1px 0px rgb(15, 9, 9);
@@ -29,7 +27,6 @@
 .fashion{
     grid-area: fashion;
     width: 100%;
-    background-color: lightpink;
     border-radius: 10px;
     border: 1px solid gray;
     box-shadow: 1px 2px 1px 0px rgb(15, 9, 9);
@@ -42,7 +39,6 @@
 .furniture{
     grid-area: furniture;
     width: 100%;
-    background-color: lightblue;
     border-radius: 10px;
     border: 1px solid gray;
     box-shadow: 1px 2px 1px 0px rgb(15, 9, 9);
@@ -55,7 +51,6 @@
 .appliances{
     grid-area: appliances;
     width: 100%;
-    background-color: lightyellow;
     border-radius: 10px;
     border: 1px solid gray;
     box-shadow: 1px 2px 1px 0px rgb(15, 9, 9);
@@ -68,7 +63,6 @@
 .books{
     grid-area: books;
     width: 100%;
-    background-color: lightyellow;
     border-radius: 10px;
     border: 1px solid gray;
     box-shadow: 1px 2px 1px 0px rgb(15, 9, 9);
@@ -82,15 +76,15 @@
 @media (max-width: 780px){
     .categories-box{
         padding: 0px;
-        grid-template-rows:repeat(2, 100px);
-        gap:10px;
+        grid-template-rows:repeat(2, 130px);
+        gap:20px;
     }
     
 }
 @media (max-width: 480px){
     .categories-box{
         padding: 0px;
-        grid-template-rows:repeat(2, 70px);
+        grid-template-rows:repeat(2, 90px);
         gap:10px;
     }
     
