@@ -17,7 +17,7 @@ app.use(cors({
   origin:[
     "http://localhost:5173",          
     "https://easyby-website.vercel.app" ,
-    "https://easyby-website.netlify.app/"
+    "https://easyby-website.netlify.app"
   ],
   credentials: true
 }));
