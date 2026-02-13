@@ -74,7 +74,8 @@ const Header = () => {
       {/* LEFT */}
       <div className="header-left">
         <Link to="/" className="main-logo">
-          <h1>Shop_Mall</h1>
+          <span className="logo-full">EasyBy</span>
+          <span className="logo-short">E$B</span>
         </Link>
       </div>
 

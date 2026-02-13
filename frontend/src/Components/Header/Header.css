@@ -16,9 +16,12 @@ header {
   flex-direction: row;
   gap: 30px;
 }
-.main-logo h1 {
+.main-logo .logo-full, .main-logo .logo-short{
   color: var(--accent-color);
   font-size: 30px;
+}
+.main-logo .logo-short{
+  display: none;
 }
 
 /* SEARCH BAR */
@@ -120,6 +123,12 @@ header {
 @media (max-width: 480px) {
   header{
     padding: 0 5px;
+  }
+  .header-left .main-logo .logo-full{
+    display: none;
+  }
+  .header-left .main-logo .logo-short{
+    display: inline;
   }
   .header-right{
     gap: 10px;

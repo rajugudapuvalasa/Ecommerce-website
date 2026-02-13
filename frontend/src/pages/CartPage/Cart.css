@@ -1,11 +1,12 @@
 .cart-container {
+  width: 100%;
   display: flex;
   gap: 20px;
   padding: 20px;
 }
 
 .cart-left {
-  flex: 3;
+  flex: 1;
 }
 
 .cart-item {
@@ -70,7 +71,9 @@
   cursor: pointer;
 }
 
-.empty {
-  text-align: center;
-  margin-top: 100px;
+@media(max-width : 480px)
+{
+  .cart-container{
+    flex-direction: column;
+  }
 }

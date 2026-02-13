@@ -1,21 +1,33 @@
 import React, { useEffect, useState } from "react";
 import "./Cart.css";
 import {toast} from "react-hot-toast"
+import API_URL from "../../Api";
+import Empty from "../../Components/Loader/Empty";
+import Loader from '../../Components/Loader/Loader'
 
 const Cart = () => {
   const [cart, setCart] = useState(null);
+  const [loading,setLoading] = useState(true);
   const token = localStorage.getItem("token");
 
   /* ================= FETCH CART ================= */
   const fetchCart = async () => {
-    const res = await fetch("http://localhost:5000/api/cart", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = await res.json();
-    setCart(data);
+  try {
+      setLoading(true);
+      const res = await fetch(`${API_URL}/cart`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      setCart(data);
+    } catch (err) {
+      console.error("Error fetching cart", err);
+    } finally {
+      setLoading(false);
+    }
   };
+
 
   useEffect(() => {
     fetchCart();
@@ -25,7 +37,7 @@ const Cart = () => {
   const updateQty = async (productId, qty) => {
     if (qty < 1) return;
 
-    await fetch("http://localhost:5000/api/cart/update", {
+    await fetch(`${API_URL}/cart/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +51,7 @@ const Cart = () => {
 
   /* ================= REMOVE ITEM ================= */
   const removeItem = async (productId) => {
-    await fetch(`http://localhost:5000/api/cart/remove/${productId}`, {
+    await fetch(`${API_URL}/cart/remove/${productId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -49,8 +61,10 @@ const Cart = () => {
     fetchCart();
   };
 
+  if(loading) return <Loader />;
+
   if (!cart || cart.items?.length === 0)
-    return <h2 className="empty">Your cart is empty</h2>;
+    return <Empty />;
 
   return (
     <div className="cart-container">
