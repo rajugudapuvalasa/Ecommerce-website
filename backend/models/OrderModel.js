@@ -1,55 +1,45 @@
 import mongoose from "mongoose";
 
-const orderSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true
-  },
-
-  items: [
-    {
-      productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product"
+const orderSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    items: [
+      {
+        product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+        name: String,
+        price: Number,
+        quantity: Number,
+        image: String,
       },
-
-      variantId: {
-        type: mongoose.Schema.Types.ObjectId
-      },
-
-      quantity: Number,
-      price: Number,
-
-      selectedAttributes: {
-        color: String,
-        size: String,
-        storage: String,
-        weight: String
-      }
-    }
-  ],
-
-  shippingAddress: {
-    name: String,
-    phone: String,
-    address: String,
-    city: String,
-    pincode: String
+    ],
+    shippingAddress: {
+      address: String,
+      city: String,
+      state: String,
+      pincode: String,
+      phone: String,
+    },
+    totalAmount: {
+      type: Number,
+      required: true,
+    },
+    paymentInfo: {
+      method: { type: String, default: "Razorpay" },
+      razorpay_order_id: String,
+      razorpay_payment_id: String,
+      razorpay_signature: String,
+    },
+    status: {
+      type: String,
+      enum: ["Pending", "Paid", "Shipped", "Delivered", "Cancelled", "Refunded"],
+      default: "Paid",
+    },
   },
-
-  paymentMethod: String,
-  paymentStatus: {
-    type: String,
-    default: "pending"
-  },
-
-  orderStatus: {
-    type: String,
-    default: "processing"
-  },
-
-  totalAmount: Number
-},{ timestamps:true });
+  { timestamps: true }
+);
 
 export default mongoose.model("Order", orderSchema);

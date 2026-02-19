@@ -1,12 +1,13 @@
 import React from "react";
 import "./Banner.css";
 import Slider from "react-slick";
-import banner2 from '../../../public/banner2.jpg';
-import banner3 from '../../../public/banner3.jpg';
-import banner5 from '../../../public/banner5.jpg';
 
 const Banner = () => {
-  const images = [banner3,banner2,banner5]; // add more if you want
+  const images = [
+  "/banner1.jpg",
+  "/banner2.jpg",
+  "/banner3.jpg",
+];
 
   const settings = {
     dots: true,

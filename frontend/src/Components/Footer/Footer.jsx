@@ -1,6 +1,7 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import "./Footer.css";
+import {Link} from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -20,30 +21,16 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Quick Links</h4>
           <ul>
-            <li>Home</li>
-            <li>Products</li>
-            <li>Fashion</li>
-            <li>Contact</li>
-            <li>Cart</li>
-          </ul>
-        </div>
-
-        {/* Customer Service */}
-        <div className="footer-section">
-          <h4>Customer Service</h4>
-          <ul>
-            <li>Help Center</li>
-            <li>Returns</li>
-            <li>Shipping Info</li>
-            <li>Privacy Policy</li>
-            <li>Terms & Conditions</li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/wishlist">Wishlist</Link></li>
+            <li><Link to="/cart">Cart</Link></li>
           </ul>
         </div>
 
         {/* Contact Info */}
         <div className="footer-section">
           <h4>Contact Us</h4>
-          <p>Email: support@shopmall.com</p>
+          <p>Email: support@EasyBy.com</p>
           <p>Phone: +91 22222 43210</p>
           <div className="footer-socials">
             <FaFacebook />
@@ -56,7 +43,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        © 2025 Shop_Mall. All Rights Reserved by Gudapuvalasa Raju.
+        © 2025 EasyBy. All Rights Reserved by Gudapuvalasa Raju.
       </div>
     </footer>
   );

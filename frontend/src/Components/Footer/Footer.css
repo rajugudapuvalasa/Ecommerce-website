@@ -53,7 +53,7 @@
   transition: 0.3s;
 }
 
-.footer-section ul li:hover {
+.footer-section ul li:hover{
   color: #ff9800;
   padding-left: 5px;
 }

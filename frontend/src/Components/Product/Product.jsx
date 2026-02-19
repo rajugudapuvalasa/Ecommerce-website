@@ -5,6 +5,7 @@ import Loader from "../Loader/Loader"
 import {FaRegHeart } from "react-icons/fa";
 import API_URL from "../../Api";
 import {toast} from "react-hot-toast"
+import WishlistButton from "../WishlistButton";
 
 function Product() {
   const [products, setProducts] = useState([]);
@@ -28,19 +29,6 @@ function Product() {
       }
     }
 
-    const addToWishlist = async (productId) => {
-      await fetch(`${API_URL}/wishlist/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ productId }),
-      });
-      toast.success("Added item to wishlist")
-    };
-
-
   return (
     <div className="product-page" >
       {loading && <Loader />}
@@ -53,7 +41,7 @@ function Product() {
                   alt={product.name}
                   onClick={() => navigate(`/product/${product._id}`) }
                 />
-                <span className="wishlist-btn" onClick={() => addToWishlist(product._id)}><FaRegHeart /></span>
+            <WishlistButton productId={product._id} />
             <div className="content">
                 <h3 className="product-name">{product.name}</h3>
                 <p className="product-price">₹{product.price}</p>

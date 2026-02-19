@@ -7,7 +7,8 @@ import Loader from "../../Components/Loader/Loader";
 import NotFound from "../../Components/Loader/NotFound";
 import Reviews from "../../Components/reviews/Reviews";
 import Product from '../../Components/Product/Product'
-import toast from "react-hot-toast";
+import Checkout from "../../Components/Checkout";
+import CartButton from "../../Components/CartButton";
 const SingleProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -50,67 +51,48 @@ const SingleProduct = () => {
     })();
   }, [id]);
 
-  const addToCart = async (product) => {
-    try{
-      await fetch(`${API_URL}/cart/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`
-        },
-        body: JSON.stringify({
-          productId: product._id,
-          quantity: 1,
-          price: product.price
-        })
-      });
-      toast.success("Added Cart Item")
-    }catch(err){
-      console.log(err);
-    }
-};
-
-
   if (loading) return <Loader />;
   if (!product) return <NotFound />;
 
   return (
-    <>
-    <div className="single-product-container">
-        {/* ⭐ IMAGE SLIDER */}
-        <div className="left">
-          <div className="image-slider">
-            <Slider {...settings}>
-              {product.images?.map((img, index) => (
-                <div key={index}>
-                  <img
-                    src={img.url}
-                    alt="product"
-                    className="single-product-image"
-                  />
-                </div>
-              ))}
-            </Slider>
-            </div>
-            <div className="action-buttons">
-              <button className="add-to-cart" onClick={() => addToCart(product)}>Add Cart</button>
-              <button className="buy">Buy</button>
-            </div>
-        </div>
+    <div className="single-product-page">
+      <div className="single-product-container">
+          {/* ⭐ IMAGE SLIDER */}
+          <div className="left">
+            <div className="image-slider">
+              <Slider {...settings}>
+                {product.images?.map((img, index) => (
+                  <div key={index}>
+                    <img
+                      src={img.url}
+                      alt="product"
+                      className="single-product-image"
+                    />
+                  </div>
+                ))}
+              </Slider>
+              </div>
+              <div className="action-buttons">
+                <CartButton product={product} />
+                <Checkout totalPrice={product.price} mode="single" product={product} />
+              </div>
+          </div>
 
-        {/* ⭐ PRODUCT INFO */}
-        <div className="single-product-info">
-          <h2>{product.name}</h2>
-          <p>{product.description}</p>
+          {/* ⭐ PRODUCT INFO */}
+          <div className="single-product-info">
+            <h2>{product.name}</h2>
+            <p>{product.description}</p>
 
-          <h3>₹ {product.price}</h3>
-          <h4>Stock: {product.stock}</h4><br></br>
-          <Reviews />
-        </div>
+            <h3>₹ {product.price}</h3>
+            <h4>Stock: {product.stock}</h4><br></br>
+            <Reviews />
+          </div>
       </div>
-      <h2>Similar Products</h2><br />
-      <Product />
-      </>
+      <div className="others">
+        <h2>Similar Products</h2><br />
+        <Product />
+      </div>
+    </div>
   );
 };
 

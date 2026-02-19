@@ -49,7 +49,7 @@ export const createProduct = async (req, res) => {
 
 export const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find().sort({ createdAt: -1 });
+    const products = await Product.find().populate("category").sort({ createdAt: -1 });
 
     res.status(200).json({
       message: "Products fetched successfully",
@@ -112,48 +112,73 @@ export const updateProduct = async (req, res) => {
   try {
     let product = await Product.findById(req.params.id);
 
-    if (!product)
+    if (!product) {
       return res.status(404).json({ message: "Product not found" });
+    }
 
-    let newImages = [];
-
-    // If new images uploaded
-    if (req.files && req.files.length > 0) {
-
-      // Delete old images from Cloudinary
-      for (let img of product.images) {
-        const publicId = img.url.split("/").pop().split(".")[0];
-        await cloudinary.uploader.destroy("Shopmall/product_images/" + publicId);
+    // 1️⃣ Parse existing images sent from frontend
+    let existingImages = [];
+    if (req.body.existingImages) {
+      try {
+        existingImages = JSON.parse(req.body.existingImages);
+      } catch (e) {
+        existingImages = [];
       }
+    }
 
-      // Upload new images
+    // 2️⃣ Upload new images (if any)
+    let newImages = [];
+    if (req.files && req.files.length > 0) {
       for (let file of req.files) {
         const uploaded = await cloudinary.uploader.upload(file.path, {
           folder: "Shopmall/product_images",
         });
 
-        newImages.push({ url: uploaded.secure_url });
+        newImages.push({
+          url: uploaded.secure_url,
+          public_id: uploaded.public_id,
+        });
       }
-
-      req.body.images = newImages;
     }
 
-    // Update product fields
+    // 3️⃣ Combine old + new images
+    const finalImages = [...existingImages, ...newImages];
+
+    // 4️⃣ Delete removed images from Cloudinary
+    const oldPublicIds = product.images.map((img) => img.public_id);
+    const newPublicIds = finalImages.map((img) => img.public_id);
+
+    for (let publicId of oldPublicIds) {
+      if (!newPublicIds.includes(publicId)) {
+        await cloudinary.uploader.destroy(publicId);
+      }
+    }
+
+    // 5️⃣ Update product
     const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      {
+        ...req.body,
+        images: finalImages, // ✅ important
+      },
       { new: true }
     );
 
     res.status(200).json({
+      success: true,
       message: "Product updated successfully",
       product: updatedProduct,
     });
-
   } catch (err) {
-    res.status(500).json({ message: "Error updating product", error: err.message });
+    console.error("Update product error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Error updating product",
+      error: err.message,
+    });
   }
 };
+
 
 export const deleteProduct = async (req, res) => {
   try {

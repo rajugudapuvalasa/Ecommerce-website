@@ -4,11 +4,17 @@ import UpdateProduct from "./UpdateProduct";
 import "./allproduct.css"
 import API_URL from "../../Api";
 import { toast } from "react-hot-toast";
+import {useNavigate} from "react-router-dom"
 
 const AllProducts = () => {
+  const token =localStorage.getItem("token");
+  const navigate =useNavigate();
   const [products, setProducts] = useState([]);
   const [editProduct, setEditProduct] = useState(null);
-
+  if(!token)
+  {
+    navigate("/login");
+  }
   useEffect(() => {
     loadProducts();
   }, []);
@@ -25,7 +31,7 @@ const AllProducts = () => {
     const res = await fetch(`${API_URL}/products/${id}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${"token"}`,
       },
     });
 
@@ -39,7 +45,7 @@ const AllProducts = () => {
 
   return (
     <div className="products-admin">
-      <h2>All Products</h2>
+      <h3>All Products</h3>
 
       <table className="products-table">
         <thead>

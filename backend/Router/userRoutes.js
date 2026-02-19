@@ -8,7 +8,7 @@ router.route('/login').post(login);
 router.route('/googleAuth').post(googleAuth);
 router.get("/check-role", protect, checkRole);
 router.route('/').get(protect , isAdmin ,getAllUsers);
-router.route('/:id').get(getSingleUser).put(updateUserRole).delete(deleteUser);
+router.route('/:id').get(protect ,isAdmin,getSingleUser).put(protect ,isAdmin,updateUserRole).delete(protect ,isAdmin,deleteUser);
 
 export default router;
 

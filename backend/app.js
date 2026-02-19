@@ -5,6 +5,8 @@ import Cart from "./Router/cartRoutes.js";
 import Banner from "./Router/bannerRoutes.js"
 import Wishlist from "./Router/wishlistRoutes.js"
 import Category from "./Router/categoryRoutes.js"
+import paymentRoutes from "./Router/payment.js";
+import orderRoutes from "./Router/orderRoutes.js"
 import cors from "cors";
 import dotenv from 'dotenv';
 
@@ -16,7 +18,6 @@ app.use(express.json());
 app.use(cors({
   origin:[
     "http://localhost:5173",          
-    "https://easyby-website.vercel.app" ,
     "https://easyby-website.netlify.app"
   ],
   credentials: true
@@ -29,5 +30,7 @@ app.use('/api/cart',Cart);
 app.use('/api/banners',Banner);
 app.use('/api/wishlist',Wishlist);
 app.use('/api/categories',Category);
+app.use('/api/payment',paymentRoutes)
+app.use('/api/orders',orderRoutes)
 
 export default app;

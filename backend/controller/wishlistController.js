@@ -43,15 +43,20 @@ export const removeFromWishlist = async (req, res) => {
     const { productId } = req.params;
 
     const wishlist = await Wishlist.findOne({ user: req.user.id });
-    if (!wishlist) return res.json({ products: [] });
+    if (!wishlist) {
+      return res.json({ products: [] });
+    }
 
-    wishlist.products = wishlist.products.filter(
-      (id) => id.toString() !== productId
+    await Wishlist.findOneAndUpdate(
+      { user: req.user.id },
+      { $pull: { products: productId } },
+      { new: true }
     );
 
-    await wishlist.save();
-    res.json({ message: "Removed from wishlist", wishlist });
+    res.json({ message: "Removed from wishlist" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: err.message });
   }
 };
+

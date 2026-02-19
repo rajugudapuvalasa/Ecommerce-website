@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./ProductGrid.css";
 import Loader from "../Loader/Loader";
 import NotFound from "../Loader/NotFound";
+import WishlistButton from "../WishlistButton";
 
 const ProductGrid = ({ products, loading }) => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const ProductGrid = ({ products, loading }) => {
             alt={p.name}
             onClick={() => navigate(`/product/${p._id}`)}
           />
+          <WishlistButton productId={p._id} />
           <div className="content">
             <h4>{p.name}</h4>
             <p>₹ {p.price}</p>

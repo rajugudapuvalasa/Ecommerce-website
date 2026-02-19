@@ -23,6 +23,7 @@ import AllBanners from "./admin/Banners/AllBanners";
 import CreateBanner from "./admin/Banners/CreateBanner";
 import CategoryPage from "./pages/categorypage/CategoryPage";
 import SearchResults from "./pages/SearchResults";
+import Order from "./pages/orderpage/Order"
 
 const App = () => {
 
@@ -43,8 +44,9 @@ const App = () => {
 
           {/* SINGLE PRODUCT */}
           <Route path="/product/:id" element={ <SingleProduct />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
+          <Route path="/wishlist" element={<PrivateRoute><Wishlist /></PrivateRoute>} />        
+          <Route path="/myorders" element= {<PrivateRoute><Order /></PrivateRoute>} />
         </Route>
 
         <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>

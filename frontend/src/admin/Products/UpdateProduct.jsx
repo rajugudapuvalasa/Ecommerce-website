@@ -28,7 +28,7 @@ const UpdateProduct = ({ product, onClose, onUpdated }) => {
         name: product.name || "",
         description: product.description || "",
         brand: product.brand || "",
-        category: product.category || "",
+        category: product.category?._id || "",
         subCategory: product.subCategory || "",
         price: product.price || "",
         stock: product.stock || "",
@@ -52,7 +52,7 @@ const UpdateProduct = ({ product, onClose, onUpdated }) => {
       .then((data) => {
         setCategories(data);
 
-        const selected = data.find((c) => c._id === product.category);
+        const selected = data.find((c) => c._id === product.category?._id);
         setSubcategories(selected?.subcategories || []);
       });
   }, [product.category]);
@@ -86,11 +86,15 @@ const UpdateProduct = ({ product, onClose, onUpdated }) => {
       const formData = new FormData();
       Object.entries(form).forEach(([k, v]) => formData.append(k, v));
 
+      // Send existing images (only those not removed)
+      const existingImages = images.filter((img) => !img.file);
+
+      formData.append("existingImages", JSON.stringify(existingImages));
+
+      // Send new images
       images.forEach((img) => {
         if (img.file) {
-          formData.append("images", img.file); // new image
-        } else {
-          formData.append("existingImages", JSON.stringify(img)); // old image
+          formData.append("images", img.file);
         }
       });
 

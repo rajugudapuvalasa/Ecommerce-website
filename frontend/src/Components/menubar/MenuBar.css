@@ -6,6 +6,7 @@
   background: var(--header-bg);
   z-index: 1;
   overflow: visible;
+  border: none;
 }
 
 /* INNER SCROLLER */
@@ -35,8 +36,8 @@
 .menu-dropdown{
   position: absolute;
   top: 100%;
-  left: 0;
-  min-width: 220px;
+  left: -20%;
+  min-width: 100px;
   background: var(--header-bg);
   box-shadow: 0 10px 30px rgba(0,0,0,.15);
   border-radius: 8px;
@@ -48,10 +49,11 @@
   animation: fadeIn .2s ease-in-out;
 }
 
-.menu-dropdown .sub-item{
+.menu-dropdown .sub_item{
   color: var(--header-text);
   cursor: pointer;
   font-size: 12px;
+  padding: 10px;
 }
 
 /* ANIMATION */

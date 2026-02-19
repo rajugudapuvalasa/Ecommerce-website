@@ -1,9 +1,12 @@
 .linker {
   display: flex;
+  align-items: center;
   gap: 30px;
-  position: fixed;
-  top: 70px;
+  position: sticky;
+  top: 0px;
   z-index: 0;
+  background-color: var(--header-bg);
+  padding: 5px 20px;
 }
 
 .linker a {
@@ -17,4 +20,16 @@
 .linker a.active {
   background:var(--accent-color);
   color: var(--header-bg);
+}
+
+@media(max-width:480px)
+{
+  .linker{
+    height: 25px;
+    padding: 0px 15px;
+  }
+  .linker a{
+    font-size: 12px;
+    padding: 3px 10px ;
+  }
 }

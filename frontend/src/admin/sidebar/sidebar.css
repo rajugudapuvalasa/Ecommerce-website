@@ -42,3 +42,31 @@
   color: #fff;
 }
 
+
+
+@media(max-width : 480px)
+{
+  .sidebar{
+    width: 100vw;
+    flex-direction: row;
+    overflow: auto;
+    padding: 0px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .sidebar h2{
+    display: none;
+  }
+  .sidebar-nav
+  {
+    flex-direction: row;
+    padding: 5px 15px;
+  }
+  .sidebar-nav .nav-link
+  {
+    border: 1px solid var(--border-color);
+    padding: 3px 8px;
+  }
+  .sidebar-nav a{
+    font-size: 12px;
+  }
+}

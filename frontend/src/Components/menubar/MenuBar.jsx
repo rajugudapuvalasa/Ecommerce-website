@@ -48,7 +48,7 @@ const MegaMenu = () => {
   };
 
   return (
-    <nav className="menu-bar" ref={menuRef}>
+    <div className="menu-bar" ref={menuRef}>
       <div className="menu-scroll">
         {categories.map((cat, index) => (
           <div
@@ -71,7 +71,7 @@ const MegaMenu = () => {
                 {cat.subcategories.map((sub, i) => (
                   <span
                     key={i}
-                    className="sub-item"
+                    className="sub_item"
                     onClick={() => goToSubCategory(cat, sub)}
                   >
                     {sub}
@@ -82,7 +82,7 @@ const MegaMenu = () => {
           </div>
         ))}
       </div>
-    </nav>
+    </div>
   );
 };
 

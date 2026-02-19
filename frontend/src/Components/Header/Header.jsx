@@ -122,7 +122,13 @@ const Header = () => {
 
               {profileOpen && (
                 <div className="profile-dropdown">
-                  <p>👤 My Profile</p>
+                  <Link to="/profile" onClick={() => setProfileOpen(false)}>
+                    👤 My Profile
+                  </Link>
+
+                  <Link to="/myorders" onClick={() => setProfileOpen(false)}>
+                    📦 Orders
+                  </Link>
 
                   {/* SECURE ADMIN CHECK */}
                   {isAdmin && (
